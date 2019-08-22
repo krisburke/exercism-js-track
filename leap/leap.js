@@ -8,6 +8,5 @@ const isEvenlyDivisible = (dividend, divisor) => dividend % divisor === 0;
 * */
 
 export const isLeap = year =>
-  isEvenlyDivisible(year, 4)
-    ? !(isEvenlyDivisible(year, 100) && !isEvenlyDivisible(year, 400))
-    : false;
+  (isEvenlyDivisible(year, 4) && !isEvenlyDivisible(year, 100)) ||
+  isEvenlyDivisible(year, 400);
