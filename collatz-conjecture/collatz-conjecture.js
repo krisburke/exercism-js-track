@@ -11,22 +11,14 @@ Given a number n, return the number of steps required to reach 1.
 
 const isEven = n => n % 2 === 0;
 
-export const steps = num => {
-  let steps = 0;
+export const steps = (num, count = 0) => {
   if (num <= 0) {
     throw new Error("Only positive numbers are allowed");
   }
 
-  const testFn = num => {
-    if (num === 1) {
-      return;
-    }
+  if (num === 1) {
+    return count;
+  }
 
-    steps++;
-    return isEven(num) ? testFn(num / 2) : testFn(3 * num + 1);
-  };
-
-  testFn(num);
-
-  return steps;
+  return steps(isEven(num) ? num / 2 : 3 * num + 1, count + 1);
 };
